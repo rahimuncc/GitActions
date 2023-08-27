@@ -1,0 +1,59 @@
+.partsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 250px;
+  row-gap: 20px;
+  width: 100%;
+  padding: 4rem 4rem;
+  box-shadow: 0px 0px 10px 2px gray;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  @media (max-width: 768px) {
+    width: 80px;
+    height: 80px;
+  }
+}
+.card:hover{
+  transform: scale(1.2);
+}
+
+.card > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.name {
+  width: 100px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .partsContainer {
+    justify-content: center;
+    gap: 30px; /* Adjust gap for smaller screens */
+    row-gap: 10px; /* Adjust row-gap for smaller screens */
+  }
+}
