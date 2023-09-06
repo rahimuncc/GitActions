@@ -1,0 +1,38 @@
+name: Node.js CI
+
+on: 
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Use Node.js ${{matrix.node-version}}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{matrix.node-version}}
+
+    - name: Install dependencies and build
+      run: |
+        npm i
+        cd Front_End
+        npm i
+        npm run build
+
+    - name: Start and stop PM2 process
+      run: |
+        cd ..
+        pm2 start
+        pm2 stop
+        pm2 save
+
+    - name: Restart NGINX
+      run: |
+        sudo service nginx restart
